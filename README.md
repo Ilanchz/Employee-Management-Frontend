@@ -9,3 +9,5 @@ Create a REST API for the application
     - To send a post request to a particualr organisation collection to update the particular employee (Employee SOEID)
 
 (Important) REST API must be built using spring boot
+
+Readme for the front end is withing the folder
