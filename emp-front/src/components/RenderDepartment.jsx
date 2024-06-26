@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+import { faSignOutAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 
 const dummyEmployees = [
@@ -276,6 +276,12 @@ function Department() {
     setSelectedEmployee(employee);
   };
 
+  // function to delete table entry
+  const handleDelete = (employeeId) => {
+    const updatedEmployees = employees.filter((emp) => emp.id !== employeeId);
+    setEmployees(updatedEmployees);
+  };
+
   const handleSave = (updatedEmployee) => {
     const updatedEmployees = employees.map((emp) =>
       emp.id === updatedEmployee.id ? updatedEmployee : emp
@@ -287,6 +293,24 @@ function Department() {
   const handleCancel = () => {
     setSelectedEmployee(null);
   };
+
+  // function to add a new entry
+  // const handleAddNew = () => {
+  //   const newEmployee = {
+  //     id: Math.floor(Math.random() * 1000), // Replace with actual ID generation logic
+  //     name: "New Employee",
+  //     salary: 0,
+  //     projectsContributed: [],
+  //     yearsOfExperience: 0,
+  //     attendance: "100%",
+  //     age: 25,
+  //     gender: "Male",
+  //     currentlyWorking: true,
+  //     resigned: false,
+  //   };
+  //   const updatedEmployees = [...employees, newEmployee];
+  //   setEmployees(updatedEmployees);
+  // };
 
   return (
     <div className="flex flex-col">
@@ -302,6 +326,16 @@ function Department() {
         >
           <FontAwesomeIcon icon={faSignOutAlt} className="mr-1" />
           Back to Home
+        </button>
+      </div>
+
+       {/* Add New Entry Button */}
+       <div className="flex justify-end p-3">
+        <button
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+          //onClick={handleAddNew}
+        >
+          Add New Employee
         </button>
       </div>
 
@@ -484,11 +518,19 @@ function Department() {
                   <td className="border border-gray-300 px-4 py-2">{employee.gender}</td>
                   <td className="border border-gray-300 px-4 py-2">
                     <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded mr-2"
                       onClick={() => handleEdit(employee)}
                     >
                       Edit
                     </button>
+                    
+                    <button
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded"
+                      onClick={() => handleDelete(employee.id)}
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} className="mr-1" />
+                    </button>
+
                   </td>
                 </tr>
               ))}
