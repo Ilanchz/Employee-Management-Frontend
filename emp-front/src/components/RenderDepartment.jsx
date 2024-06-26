@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
 
 const dummyEmployees = [
     {
@@ -256,6 +259,7 @@ function Department() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("Type");
+  const navigate = useNavigate();
 
   const [employees, setEmployees] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -287,8 +291,20 @@ function Department() {
   return (
     <div className="flex flex-col">
       <div className="flex bg-black text-white text-3xl justify-center p-5 rounded-md italic">
-        <p>Department Dashboard {type}</p>
+        <div className="flex-grow pl-16">
+          <p className="text-center">{type} Department</p>
+        </div>
+
+        {/* Button to navigate back to Home page */}
+        <button
+          className="ml-auto bg-transparent hover:bg-blue-700 text-blue-500 font-bold py-2 px-2 rounded flex items-center text-sm"
+          onClick={() => navigate("/")}
+        >
+          <FontAwesomeIcon icon={faSignOutAlt} className="mr-1" />
+          Back to Home
+        </button>
       </div>
+
 
       {selectedEmployee && (
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 z-50">

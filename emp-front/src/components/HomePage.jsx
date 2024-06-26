@@ -20,7 +20,19 @@ function HomePage() {
       <div
         key={index}
         onClick={exploreDepartment}
-        className="sector-card flex-wrap hover:bg-neutral-500 hover:text-white hover:w-1/2 flex flex-row w-1/3 h-1/3 bg-gray-300 text-3xl p-5 m-5 border-2 rounded-3xl items-center justify-center font-sans transition-all duration-500 italic font-bold backdrop-blur-3xl shadow-2xl"
+         className="sector-card 
+                    flex-wrap 
+                    hover:bg-neutral-500 
+                    hover:text-white 
+                    hover:w-1/2 
+                    flex flex-row 
+                    w-1/3 h-1/3 
+                    bg-gray-300 
+                    text-3xl p-5 m-5 border-2 rounded-3xl 
+                    items-center 
+                    justify-center 
+                    font-sans transition-all duration-500 italic font-bold 
+                    backdrop-blur-3xl shadow-2xl"
       >
         {sector}
       </div>
