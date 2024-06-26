@@ -290,6 +290,8 @@ function Department() {
         <p>Department Dashboard {type}</p>
       </div>
 
+      {/*  Selected Employee Form   */}
+
       {selectedEmployee && (
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-5 rounded-md w-1/2 animate-fade-in">
