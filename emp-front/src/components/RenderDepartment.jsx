@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSignOutAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Tools from './Tools'
+
 
 const dummyEmployees = [
     {
@@ -257,6 +260,7 @@ function Department() {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const type = queryParams.get("Type");
+  const navigate = useNavigate();
 
   const [employees, setEmployees] = useState([]);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
@@ -277,6 +281,12 @@ function Department() {
     setSelectedEmployee(employee);
   };
 
+  // function to delete table entry
+  const handleDelete = (employeeId) => {
+    const updatedEmployees = employees.filter((emp) => emp.id !== employeeId);
+    setEmployees(updatedEmployees);
+  };
+
   const handleSave = (updatedEmployee) => {
     const updatedEmployees = employees.map((emp) =>
       emp.id === updatedEmployee.id ? updatedEmployee : emp
@@ -289,10 +299,10 @@ function Department() {
     setSelectedEmployee(null);
   };
 
-  const handleDelete = (employeeId) => {
-    const updatedEmployees = employees.filter((emp) => emp.id !== employeeId);
-    setEmployees(updatedEmployees);
-  };
+  // const handleDelete = (employeeId) => {
+  //   const updatedEmployees = employees.filter((emp) => emp.id !== employeeId);
+  //   setEmployees(updatedEmployees);
+  // };
 
   return (
     <div className="flex flex-col">

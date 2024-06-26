@@ -14,8 +14,20 @@ function HomePage() {
     return (
       <div
         key={index}
-        onClick={() => exploreDepartment(index+1)}
-        className="dark:text-white dark:bg-gray-700 sector-card flex-wrap hover:bg-gray-900 hover:text-white hover:w-1/2 flex flex-col w-1/3 h-auto bg-gray-300 text-xl p-5 m-5 border-2 rounded-3xl items-center justify-center font-sans transition-all duration-500 italic font-bold backdrop-blur-3xl shadow-2xl"
+        onClick={exploreDepartment}
+         className="sector-card 
+                    flex-wrap 
+                    hover:bg-neutral-500 
+                    hover:text-white 
+                    hover:w-1/2 
+                    flex flex-row 
+                    w-1/3 h-1/3 
+                    bg-gray-300 
+                    text-3xl p-5 m-5 border-2 rounded-3xl 
+                    items-center 
+                    justify-center 
+                    font-sans transition-all duration-500 italic font-bold 
+                    backdrop-blur-3xl shadow-2xl"
       >
         <div className="text-3xl mb-4">{department.dept_Name}</div>
         <div>Total Employees: {department.total_Employees}</div>
