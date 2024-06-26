@@ -51,7 +51,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div className="h-screen md:w-4/5 bg-gray-100 flex flex-row p-5 rounded-3xl">
+    <div className="dark:bg-zinc-500 h-screen md:w-4/5 bg-gray-100 flex flex-row p-5">
       {Sectors.length === 0 ? (
         <div className="w-full flex items-center justify-center">
           <div className="animate-spin rounded-full h-40 w-40 border-t-4 border-b-4 border-blue-900"></div>
