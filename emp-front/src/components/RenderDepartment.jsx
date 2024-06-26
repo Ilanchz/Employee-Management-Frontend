@@ -266,10 +266,11 @@ function Department() {
   const [darkToggle, setDarkToggle] = useState(false); // State for dark mode toggle
 
   useEffect(() => {
+    // Simulating delay to fetch data
     setTimeout(() => {
       setEmployees(dummyEmployees);
       setLoading(false);
-    }, 2000); // Simulating delay, adjust as needed
+    }, 2000); // Adjust delay as needed
   }, []);
 
   const handleEdit = (employee) => {
@@ -288,20 +289,30 @@ function Department() {
     setSelectedEmployee(null);
   };
 
+  const handleDelete = (employeeId) => {
+    const updatedEmployees = employees.filter((emp) => emp.id !== employeeId);
+    setEmployees(updatedEmployees);
+  };
+
   return (
     <div className="flex flex-col">
       <div className="dark:bg-blue-950 w-full h-24 flex items-center justify-between bg-blue-300 text-black text-3xl p-5 rounded-b-3xl">
         <p className="dark:text-white italic">{type} Department </p>
         <Tools
-        sideToggle={sideToggle}
-        setsideToggle={setSideToggle}
-        darkToggle={darkToggle}
-        setdarkToggle={setDarkToggle}
-      />
+          sideToggle={sideToggle}
+          setsideToggle={setSideToggle}
+          darkToggle={darkToggle}
+          setdarkToggle={setDarkToggle}
+        />
+
+        <button onClick={() => window.location.href = '/'}
+          className="bg-green-500 text-white hover:bg-green-600 rounded-lg p-2 text-sm">
+          Go back to home page
+        </button>
+
       </div>
 
-      {/*  Selected Employee Form   */}
-
+      {/* Selected Employee Form */}
       {selectedEmployee && (
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-5 rounded-md w-1/2 animate-fade-in">
@@ -427,6 +438,7 @@ function Department() {
         </div>
       )}
 
+      {/* Employee Table */}
       {loading ? (
         <Spinner />
       ) : (
@@ -436,17 +448,11 @@ function Department() {
               <tr className="bg-gray-100 dark:bg-gray-600">
                 <th className="border border-gray-300 px-4 py-2">SOEID</th>
                 <th className="border border-gray-300 px-4 py-2">Name</th>
-                <th className="border border-gray-300 px-4 py-2">
-                  Currently Working
-                </th>
+                <th className="border border-gray-300 px-4 py-2">Currently Working</th>
                 <th className="border border-gray-300 px-4 py-2">Salary</th>
                 <th className="border border-gray-300 px-4 py-2">Resigned</th>
-                <th className="border border-gray-300 px-4 py-2">
-                  Projects Contributed
-                </th>
-                <th className="border border-gray-300 px-4 py-2">
-                  Years of Experience
-                </th>
+                <th className="border border-gray-300 px-4 py-2">Projects Contributed</th>
+                <th className="border border-gray-300 px-4 py-2">Years of Experience</th>
                 <th className="border border-gray-300 px-4 py-2">Attendance</th>
                 <th className="border border-gray-300 px-4 py-2">Age</th>
                 <th className="border border-gray-300 px-4 py-2">Gender</th>
@@ -458,32 +464,26 @@ function Department() {
                 <tr key={employee.id}>
                   <td className="border border-gray-300 px-4 py-2">{employee.id}</td>
                   <td className="border border-gray-300 px-4 py-2">{employee.name}</td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {employee.currentlyWorking ? "Yes" : "No"}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    ${employee.salary.toLocaleString()}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {employee.resigned ? "Yes" : "No"}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {employee.projectsContributed.join(", ")}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {employee.yearsOfExperience}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {employee.attendance}
-                  </td>
+                  <td className="border border-gray-300 px-4 py-2">{employee.currentlyWorking ? 'Yes' : 'No'}</td>
+                  <td className="border border-gray-300 px-4 py-2">{employee.salary}</td>
+                  <td className="border border-gray-300 px-4 py-2">{employee.resigned ? 'Yes' : 'No'}</td>
+                  <td className="border border-gray-300 px-4 py-2">{employee.projectsContributed.join(", ")}</td>
+                  <td className="border border-gray-300 px-4 py-2">{employee.yearsOfExperience}</td>
+                  <td className="border border-gray-300 px-4 py-2">{employee.attendance}</td>
                   <td className="border border-gray-300 px-4 py-2">{employee.age}</td>
                   <td className="border border-gray-300 px-4 py-2">{employee.gender}</td>
-                  <td className="border border-gray-300 px-4 py-2">
+                  <td className="border px-4 py-2 flex items-center justify-center gap-5 w-full min-h-5">
                     <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
                       onClick={() => handleEdit(employee)}
                     >
                       Edit
+                    </button>
+                    <button
+                      className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                      onClick={() => handleDelete(employee.id)}
+                    >
+                      Delete
                     </button>
                   </td>
                 </tr>
@@ -493,7 +493,6 @@ function Department() {
         </div>
       )}
 
-    
     </div>
   );
 }
