@@ -299,10 +299,10 @@ function Department() {
     setSelectedEmployee(null);
   };
 
-  const handleDelete = (employeeId) => {
-    const updatedEmployees = employees.filter((emp) => emp.id !== employeeId);
-    setEmployees(updatedEmployees);
-  };
+  // const handleDelete = (employeeId) => {
+  //   const updatedEmployees = employees.filter((emp) => emp.id !== employeeId);
+  //   setEmployees(updatedEmployees);
+  // };
 
   return (
     <div className="flex flex-col">
