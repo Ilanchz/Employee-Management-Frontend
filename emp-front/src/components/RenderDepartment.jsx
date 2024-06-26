@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import Tools from './Tools'
 
 const dummyEmployees = [
     {
@@ -261,6 +262,9 @@ function Department() {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  const [sideToggle, setSideToggle] = useState(true); // State for sidebar toggle
+  const [darkToggle, setDarkToggle] = useState(false); // State for dark mode toggle
+
   useEffect(() => {
     setTimeout(() => {
       setEmployees(dummyEmployees);
@@ -286,8 +290,14 @@ function Department() {
 
   return (
     <div className="flex flex-col">
-      <div className="flex bg-black text-white text-3xl justify-center p-5 rounded-md italic">
-        <p>Department Dashboard {type}</p>
+      <div className="dark:bg-blue-950 w-full h-24 flex items-center justify-between bg-blue-300 text-black text-3xl p-5 rounded-b-3xl">
+        <p className="dark:text-white italic">{type} Department </p>
+        <Tools
+        sideToggle={sideToggle}
+        setsideToggle={setSideToggle}
+        darkToggle={darkToggle}
+        setdarkToggle={setDarkToggle}
+      />
       </div>
 
       {/*  Selected Employee Form   */}
@@ -295,7 +305,7 @@ function Department() {
       {selectedEmployee && (
         <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-5 rounded-md w-1/2 animate-fade-in">
-            <h2 className="text-lg font-bold mb-3">Edit Employee</h2>
+            <h2 className="text-lg font-bold mb-3 text-center">Edit Employee</h2>
             <form>
               <div className="mb-3">
                 <label className="block text-sm font-medium text-gray-700">
@@ -420,10 +430,10 @@ function Department() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className={`overflow-x-auto p-5 m-5 animate-fade-in`}>
-          <table className="min-w-full bg-white border-collapse">
+        <div className={`overflow-x-auto p-5 m-5 animate-fade-in dark:bg-black dark:text-white rounded-3xl`}>
+          <table className="min-w-full bg-white border-collapse dark:bg-gray-800 dark:text-white rounded-lg">
             <thead>
-              <tr className="bg-gray-100">
+              <tr className="bg-gray-100 dark:bg-gray-600">
                 <th className="border border-gray-300 px-4 py-2">SOEID</th>
                 <th className="border border-gray-300 px-4 py-2">Name</th>
                 <th className="border border-gray-300 px-4 py-2">
@@ -482,6 +492,8 @@ function Department() {
           </table>
         </div>
       )}
+
+    
     </div>
   );
 }
