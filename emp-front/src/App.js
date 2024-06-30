@@ -1,14 +1,16 @@
 
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
-import LandingPage from './components/LandingPage';
-import RenderDepartment from './components/RenderDepartment';
 import Error from './components/Error';
+import RenderEmployees from './components/RenderEmployees';
+import DepartmentPage from './components/DepartmentPage';
+import OrganisationPage from './components/OrganisationPage';
 
 function App(){
   return <Router>
     <Routes>
-      <Route path="/" Component={LandingPage}/>
-      <Route path="/Department" Component={RenderDepartment}/>
+      <Route path="/" Component={OrganisationPage}/>
+      <Route path="/Organisation" Component={DepartmentPage}/>
+      <Route path="/Department" Component={RenderEmployees}/>
       <Route path="*" Component={Error}/>
     </Routes>
   </Router>

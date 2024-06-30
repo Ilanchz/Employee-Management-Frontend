@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html, body {
+    height: 100%;
+  }
+  
+  #content-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  #root {
+    flex: 1;
+    overflow-y: auto; /* Ensures content can scroll if it overflows */
+  }
+  
+  .footer {
+    background-color: #1f2937; /* Tailwind's bg-gray-800 */
+    color: white;
+    padding: 1rem 0;
+    text-align: center;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .footer .text-sm {
+    font-size: 0.875rem; /* Tailwind's text-sm */
+  }
+  
+  .footer .heart {
+    color: #f56565; /* Tailwind's text-red-500 */
+  }
+  
+  .footer .team {
+    color: #a0aec0; /* Tailwind's text-gray-400 */
+    margin-top: 0.5rem;
+  }
+  
+  .footer .team div {
+    margin-top: 0.25rem;
+  }
+  

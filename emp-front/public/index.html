@@ -3,13 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  
-  <title>EMP system</title>
+  <title>EMP System</title>
+  <link rel="icon" href="favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="index.css">
 </head>
 <body>
+  <div id="content-wrapper">
     <div id="root">
-      
+      <!-- Your main application content will be rendered here -->
     </div>
+    
+    <footer class="footer">
+      <div class="container">
+        <p class="text-sm">&copy; <span id="year"></span> Employee Management and Insights System. All rights reserved.</p>
+        <p class="text-sm mt-2">Made with <span class="heart">❤️</span> by Team 30</p>
+        <div class="team">
+          Ilanchezhiyan
+          Saumya Jaiswal
+          Gauravi Patil
+          Rozeeta Fernandes
+          Vignesh
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // JavaScript to set the current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
