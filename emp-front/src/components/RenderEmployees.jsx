@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Tools from './Tools';
+import EmpTools from './EmpTools';
 
 // Sample data for demonstration
 const dummyEmployees = [
@@ -184,7 +184,7 @@ function RenderEmployees() {
     <div id="table-container" className="flex flex-col">
       <div className="dark:bg-blue-950 w-full h-24 flex items-center justify-around bg-blue-300 text-black text-3xl p-5 rounded-b-3xl">
         <p className="dark:text-white italic">{type} Department </p>
-        <Tools sideToggle={sideToggle} setsideToggle={setsideToggle} darkToggle={darkToggle} setdarkToggle={setdarkToggle} />
+        <EmpTools sideToggle={sideToggle} setsideToggle={setsideToggle} darkToggle={darkToggle} setdarkToggle={setdarkToggle} />
 
         <button onClick={() => (window.location.href = '/')} className="bg-green-500 text-white hover:bg-green-600 rounded-lg p-2 text-sm">
           Go back to home page

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042',"#EE4433","#E6E6FA"];
 
 function OrgSideBar(props) {
   const { sideToggle } = props;
@@ -11,26 +11,31 @@ function OrgSideBar(props) {
 
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("http://localhost:8080/api/organisation", {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      const data = await response.json();
-      console.log(data);
-
-      const costTransformedData = data.map(org => ({
-        name: org.name,
-        cost: org.total_Cost
-      }));
-      setCostData(costTransformedData);
-
-      const employeeTransformedData = data.map(org => ({
-        name: org.name,
-        employees: org.total_Employees
-      }));
-      setEmployeeData(employeeTransformedData);
+      try{
+        const response = await fetch("http://localhost:8080/api/organisation", {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await response.json();
+        console.log(data);
+  
+        const costTransformedData = data.map(org => ({
+          name: org.name,
+          cost: org.total_Cost
+        }));
+        setCostData(costTransformedData);
+  
+        const employeeTransformedData = data.map(org => ({
+          name: org.name,
+          employees: org.total_Employees
+        }));
+        setEmployeeData(employeeTransformedData);
+      }catch(err){
+        console.log("Network connection for api refused!");
+      }
+      
     }
 
     fetchData();
