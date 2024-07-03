@@ -50,6 +50,7 @@ function RenderEmployees() {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false); // State to manage add form visibility
+  const [searchValue,setsearchValue]=useState("");
 
   useEffect(() => {
     // Simulating delay to fetch data
@@ -180,6 +181,43 @@ function RenderEmployees() {
     return `${year}-${month}-${day}`;
   };
 
+  function changeSearchValue(event){
+      setsearchValue(event.target.value);
+  }
+
+  async function filterEmployees(){
+    try {
+      const response = await fetch(`http://localhost:8080/api/employees`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch employee.');
+      }
+
+      const filteredEmployeeData = await response.json();
+
+
+      const filter_result=filteredEmployeeData.filter((data)=>{
+          if ((data.employee_Id+data.first_Name+data.last_Name+data.gender).includes(searchValue)){
+            return true;
+            
+          }else{
+            return false;
+          }
+      })
+
+      setEmployees(filter_result); // Update state with modified employee
+      setSelectedEmployee(null); // Clear selected employee after update
+    } catch (error) {
+      console.error('Error updating employee:', error);
+      // Handle error scenarios (e.g., show error message to user)
+    }
+  }
+
   return (
     <div id="table-container" className="flex flex-col">
       <div className="dark:bg-blue-950 w-full h-24 flex items-center justify-around bg-blue-300 text-black text-3xl p-5 rounded-b-3xl">
@@ -195,6 +233,8 @@ function RenderEmployees() {
           Add New Employee
         </button>
       </div>
+
+
 
       {/* Selected Employee Form */}
       {selectedEmployee && (
@@ -376,6 +416,8 @@ function RenderEmployees() {
           </div>
         </div>
       )}
+
+      <div class="w-screen h-16 p-4 m-4 flex items-center justify-around"><input onChange={changeSearchValue} className='w-3/5 p-5 m-4 h-14 bg-slate-200 rounded-md' placeholder="Enter Employee Search Key " value={searchValue} ></input><button class="bg-red-400 text-white text-md rounded-xl p-2 m-2"  onClick={filterEmployees}>Search</button></div>
 
       {/* Employee Table */}
       <div className="overflow-x-auto m-5 rounded-xl">
