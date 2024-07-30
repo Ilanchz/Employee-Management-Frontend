@@ -4,11 +4,12 @@ Tech Stack: React & Tailwind
 To do:
 
 Create a REST API for the application 
-    - To fetch the available organisations (GET method GetOrganisations)
-    - To fetch the employees in the particular organisation (GET method GetEmployees(Organisation_name or Organisation_Id)
-    - To send a post request to a particualr organisation collection to update the particular employee (Employee SOEID)
+    - Integrated ML model to perform classfication of employees based on the skill set
+    - Include skill set field in the rendering of data in the frontend pages
 
 (Important) REST API must be built using spring boot
+
+Backend is available in the same account repository : https://github.com/Ilanchz/Employee-Management-backend
 
 Readme for the front end is withing the folder
 
